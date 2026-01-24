@@ -11,7 +11,7 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { useEffect } from "react";
 
-/* -------------------- ICONS -------------------- */
+/* ICONS  */
 
 const hospitalIcon = new L.Icon({
   iconUrl: "https://cdn-icons-png.flaticon.com/512/3448/3448513.png",
@@ -25,7 +25,7 @@ const emergencyIcon = new L.Icon({
   iconAnchor: [17, 35],
 });
 
-/* -------------------- MAP CLICK HANDLER -------------------- */
+/* MAP CLICK HANDLER */
 
 function LocationMarker({ setLocation }) {
   useMapEvents({
@@ -36,7 +36,7 @@ function LocationMarker({ setLocation }) {
   return null;
 }
 
-/* -------------------- LEAFLET RESIZE FIX -------------------- */
+/* LEAFLET RESIZE  */
 
 function ResizeFix() {
   const map = useMap();
@@ -50,7 +50,7 @@ function ResizeFix() {
   return null;
 }
 
-/* -------------------- ZOOM TO ROUTE HANDLER -------------------- */
+/* ZOOM TO ROUTE HANDLER */
 
 function ZoomToRoute({ route }) {
   const map = useMap();
@@ -86,7 +86,7 @@ function ResetMapView({ resetView, onResetComplete }) {
 }
 
 
-/* -------------------- MAIN MAP VIEW -------------------- */
+/* MAIN MAP VIEW */
 
 export default function MapView({
   location,
@@ -97,7 +97,7 @@ export default function MapView({
   resetView,
   onResetComplete
 }) {
-  /* --------- Build straight-line route --------- */
+  /* Build straight-line route */
   let route = null;
 
   // If Navigate Now was clicked, use that route

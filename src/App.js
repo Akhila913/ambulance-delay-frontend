@@ -15,7 +15,7 @@ function App() {
   const [resetSearch, setResetSearch] = useState(false);
 
 
-  // 🔹 NEW: route used when Navigate Now is clicked
+  // NEW: route used when Navigate Now is clicked
   const [navigateRoute, setNavigateRoute] = useState(null);
 
   // Load hospitals once on app start
@@ -53,7 +53,7 @@ function App() {
     setNavigateRoute(null);
   };
 
-  // 🔹 Navigate Now handler
+  // Navigate Now handler
   const handleNavigate = () => {
     if (!location || !result) return;
 

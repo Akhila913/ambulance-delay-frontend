@@ -15,20 +15,12 @@ html, body, #root {
 /* Constrained map viewport */
 .map-wrapper {
   position: absolute;
-
-  /* below header */
   top: 84px;
-
-  /* to the right of sidebar */
   left: 400px;
-
-  /* remaining space */
   right: 0;
   bottom: 0;
-
   z-index: 1;
 }
-
 
 /* Top glass header */
 .top-bar {
@@ -49,7 +41,7 @@ html, body, #root {
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
 }
 
-/* Subtle glow line like reference */
+/* Subtle glow line */
 .top-bar::after {
   content: "";
   position: absolute;
@@ -65,7 +57,7 @@ html, body, #root {
   );
 }
 
-/* Inner rail (THIS WAS MISSING) */
+/* Inner rail */
 .top-bar-inner {
   height: 100%;
   max-width: 1400px;
@@ -76,7 +68,6 @@ html, body, #root {
   align-items: center;
   justify-content: space-between;
 }
-
 
 .top-title {
   display: flex;
@@ -111,8 +102,6 @@ html, body, #root {
   z-index: 900;
 }
 
-
-
 /* Left floating sidebar */
 .sidebar {
   position: absolute;
@@ -127,7 +116,6 @@ html, body, #root {
 
   z-index: 1000;
 
-  /* Softer, shadow */
   box-shadow:
     0 0 24px rgba(0, 132, 255, 0.18),
     0 0 60px rgba(0, 80, 180, 0.12);
@@ -135,7 +123,7 @@ html, body, #root {
   color: #eaf0ff;
 }
 
-/* Subtle vertical glow line */
+/* vertical glow line */
 .sidebar::before {
   content: "";
   position: absolute;
@@ -165,7 +153,6 @@ html, body, #root {
 .sidebar-content .navigate-btn {
   margin-top: auto;
 }
-
 
 .sidebar-section-title {
   font-size: 14px;
@@ -215,6 +202,13 @@ html, body, #root {
   color: #9aa8c7;
 }
 
+.sidebar-disclaimer {
+  margin-top: 14px;
+  font-size: 11px;
+  line-height: 1.4;
+  color: #9aa8c7;
+  opacity: 0.85;
+}
 
 .hospital-block {
   padding: 12px;
@@ -261,7 +255,6 @@ html, body, #root {
   color: #ff9c9c;
 }
 
-
 .delay-value {
   margin-top: 6px;
   font-size: 26px;
@@ -290,7 +283,6 @@ html, body, #root {
   color: #ffffff;
 }
 
-
 .traffic-bar {
   height: 8px;
   border-radius: 6px;
@@ -309,7 +301,7 @@ html, body, #root {
   border-radius: 6px;
 }
 
-/* Navigate Now CTA */
+/* Navigate Now */
 .navigate-btn {
   margin-top: 16px;
   width: 100%;
@@ -328,9 +320,7 @@ html, body, #root {
 
   border: none;
   border-radius: 12px;
-  cursor: pointer;
-
-  
+  cursor: pointer;  
 }
 
 .navigate-btn:hover {
@@ -344,12 +334,4 @@ html, body, #root {
   transform: translateY(0);
   box-shadow:
     0 0 14px rgba(11, 19, 250, 0.4);
-}
-
-.sidebar-disclaimer {
-  margin-top: 14px;
-  font-size: 11px;
-  line-height: 1.4;
-  color: #9aa8c7;
-  opacity: 0.85;
 }
