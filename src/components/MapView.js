@@ -11,8 +11,7 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { useEffect } from "react";
 
-/* ICONS  */
-
+/* ICONS */
 const hospitalIcon = new L.Icon({
   iconUrl: "https://cdn-icons-png.flaticon.com/512/3448/3448513.png",
   iconSize: [30, 30],
@@ -26,7 +25,6 @@ const emergencyIcon = new L.Icon({
 });
 
 /* MAP CLICK HANDLER */
-
 function LocationMarker({ setLocation }) {
   useMapEvents({
     click(e) {
@@ -36,8 +34,7 @@ function LocationMarker({ setLocation }) {
   return null;
 }
 
-/* LEAFLET RESIZE  */
-
+/* LEAFLET RESIZE */
 function ResizeFix() {
   const map = useMap();
 
@@ -50,8 +47,32 @@ function ResizeFix() {
   return null;
 }
 
-/* ZOOM TO ROUTE HANDLER */
+/* VIEW TO EMERGENCY + HOSPITALS */
 
+function FitToEntities({ location, hospitals, hasRoute }) {
+  const map = useMap();
+
+  useEffect(() => {
+    if (!location || hasRoute || hospitals.length === 0) return;
+
+    const bounds = L.latLngBounds([]);
+
+    bounds.extend([location.lat, location.lng]);
+
+    hospitals.forEach((h) => {
+      bounds.extend([h.lat, h.lon]);
+    });
+
+    map.fitBounds(bounds, {
+      padding: [80, 80],
+      maxZoom: 14,
+    });
+  }, [location, hospitals, hasRoute, map]);
+
+  return null;
+}
+
+/* ZOOM TO ROUTE FOR NAVIGATE NOW */
 function ZoomToRoute({ route }) {
   const map = useMap();
 
@@ -68,44 +89,18 @@ function ZoomToRoute({ route }) {
   return null;
 }
 
-function ResetMapView({ resetView, onResetComplete }) {
-  const map = useMap();
-
-  useEffect(() => {
-    if (!resetView) return;
-
-    // Bengaluru city overview
-    map.flyTo([12.9716, 77.5946], 12, {
-      duration: 1.0
-    });
-
-    onResetComplete();
-  }, [resetView, map, onResetComplete]);
-
-  return null;
-}
-
-
 /* MAIN MAP VIEW */
-
 export default function MapView({
   location,
   setLocation,
   hospitals,
   recommended,
-  navigateRoute,   
-  resetView,
-  onResetComplete
+  navigateRoute
 }) {
-  /* Build straight-line route */
   let route = null;
 
-  // If Navigate Now was clicked, use that route
-  if (navigateRoute) {
-    route = navigateRoute;
-  }
-  // Otherwise, build route normally when recommendation exists
-  else if (location && recommended) {
+  // Build route after prediction
+  if (location && recommended && recommended.eta_minutes !== -1) {
     const hospital = hospitals.find(
       (h) => h.name === recommended.hospital_name
     );
@@ -128,21 +123,19 @@ export default function MapView({
         url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
       />
 
-      {/* Fix map resize for constrained layout */}
       <ResizeFix />
 
-      {/* Zoom to route when Navigate Now is clicked */}
       <ZoomToRoute route={navigateRoute} />
 
-      {/* Handle map click */}
-      <LocationMarker setLocation={setLocation} />
-
-      <ResetMapView
-        resetView={resetView}
-        onResetComplete={onResetComplete}
+      <FitToEntities
+        location={location}
+        hospitals={hospitals}
+        hasRoute={!!navigateRoute}
       />
 
-      {/* Emergency location marker */}
+      <LocationMarker setLocation={setLocation} />
+
+      {/* Emergency marker */}
       {location && (
         <Marker position={location} icon={emergencyIcon}>
           <Popup>🚨 Emergency Location</Popup>
@@ -167,10 +160,9 @@ export default function MapView({
         </Marker>
       ))}
 
-      {/* Route polyline */}
+      {/* Route line */}
       {route && (
         <>
-          {/* Glow */}
           <Polyline
             positions={route}
             pathOptions={{
@@ -179,7 +171,6 @@ export default function MapView({
               opacity: 0.3,
             }}
           />
-          {/* Core line */}
           <Polyline
             positions={route}
             pathOptions={{

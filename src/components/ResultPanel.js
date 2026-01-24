@@ -18,11 +18,11 @@ export default function ResultPanel({ result, onNavigate }) {
 
   if (result.eta_minutes === -1) {
     return (
-      <div>
+      <div className="sidebar-warning">
         <div className="sidebar-section-title">
-          🚑 Recommended Hospital
+          Region Not Supported
         </div>
-        <p className="sidebar-muted">
+        <p>
           This model works only for Bengaluru.
         </p>
       </div>
