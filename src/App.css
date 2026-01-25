@@ -157,14 +157,15 @@ html, body, #root {
 .sidebar-section-title {
   font-size: 14px;
   font-weight: 600;
-  letter-spacing: 0.4px;
   color: #cfe3ff;
-  margin-bottom: 6px;
+  margin-bottom: 12px;
+  letter-spacing: 0.4px;
 }
 
 .sidebar-muted {
   font-size: 13px;
-  color: #9fb0d0;
+  color: #9aa7c7;
+  margin-bottom: 6px;
 }
 
 .sidebar-section-title {
@@ -203,11 +204,10 @@ html, body, #root {
 }
 
 .sidebar-disclaimer {
-  margin-top: 14px;
+  margin-top: 12px;
   font-size: 11px;
+  color: #9aa7c7;
   line-height: 1.4;
-  color: #9aa8c7;
-  opacity: 0.85;
 }
 
 .hospital-block {
@@ -217,24 +217,24 @@ html, body, #root {
 }
 
 .hospital-name {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
-  color: #ffffff;
+  margin: 10px 0 6px;
 }
 
 .hospital-distance {
-  margin-top: 4px;
   font-size: 13px;
-  color: #a9b7d9;
+  color: #aab6d6;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.distance-dot {
-  display: inline-block;
+.dot {
   width: 6px;
   height: 6px;
-  border-radius: 50%;
   background: #ff4d4d;
-  margin-right: 6px;
+  border-radius: 50%;
 }
 
 .delay-block {
@@ -244,9 +244,16 @@ html, body, #root {
   box-shadow: inset 0 0 18px rgba(80, 165, 255, 0.16);
 }
 
+.delay-card {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
 .delay-label {
-  font-size: 13px;
-  color: #c6d2ff;
+  font-size: 12px;
+  color: #aab6d6;
 }
 
 .delay-impact {
@@ -256,16 +263,37 @@ html, body, #root {
 }
 
 .delay-value {
-  margin-top: 6px;
-  font-size: 26px;
-  font-weight: 700;
-  color: #ffb3b3;
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 2px;
 }
 
 .delay-impact {
-  margin-top: 4px;
   font-size: 12px;
-  color: #ff8080;
+  color: #ffb3b3;
+  margin-top: 2px;
+}
+
+.eta-card {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 12px;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 160, 255, 0.25),
+    rgba(0, 80, 160, 0.15)
+  );
+}
+
+.eta-label {
+  font-size: 13px;
+  color: #cfe3ff;
+}
+
+.eta-value {
+  font-size: 28px;
+  font-weight: 700;
+  margin-top: 4px;
 }
 
 .traffic-block {
@@ -334,4 +362,30 @@ html, body, #root {
   transform: translateY(0);
   box-shadow:
     0 0 14px rgba(11, 19, 250, 0.4);
+}
+
+.severity-section {
+  margin-top: 14px;
+}
+
+.severity-label {
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.severity-bar {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.severity-fill {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    #00ffcc,
+    #ffaa00,
+    #ff4444
+  );
 }
