@@ -70,7 +70,12 @@ export default function SearchBar({ onSelectLocation, reset, onResetComplete }) 
   };
 
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{
+    position: "relative",
+    width: "400px",
+    display: "flex",
+    alignItems: "center"
+    }}>
       <input
         type="text"
         placeholder="Search location (e.g., Indiranagar)"

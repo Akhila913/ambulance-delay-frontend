@@ -46,7 +46,6 @@ function App() {
 
     const res = await recommendHospital(request);
     setResult(res);
-    setHour(12);
     setResetSearch(true);
 
     // reset any previous navigation intent
@@ -88,7 +87,10 @@ function App() {
       <div className="top-bar">
         <div className="top-bar-inner">
           <div className="top-title">
-            🚑 <span>Smart Emergency Response Assistant</span>
+            <div className="brand-name">MedRoute</div>
+            <div className="brand-subtitle">
+              Smart Emergency Response Assistant
+            </div>
           </div>
 
           <div className="top-controls">
