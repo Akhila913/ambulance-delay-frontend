@@ -13,10 +13,13 @@ function App() {
   const [hospitals, setHospitals] = useState([]);
   const [resetView, setResetView] = useState(false);
   const [resetSearch, setResetSearch] = useState(false);
-
-
-  // NEW: route used when Navigate Now is clicked
   const [navigateRoute, setNavigateRoute] = useState(null);
+
+  const isWeekend = () => {
+    const day = new Date().getDay();
+    return day === 0 || day === 6 ? 1 : 0;
+  };
+
 
   // Load hospitals once on app start
   useEffect(() => {
@@ -41,7 +44,7 @@ function App() {
       lat: location.lat,
       lon: location.lng,
       hour: parseInt(hour),
-      is_weekend: 0,
+      is_weekend: isWeekend(),
     };
 
     const res = await recommendHospital(request);
