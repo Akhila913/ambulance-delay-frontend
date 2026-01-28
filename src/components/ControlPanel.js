@@ -1,4 +1,4 @@
-export default function ControlPanel({ hour, setHour, onSubmit }) {
+export default function ControlPanel({ hour, setHour, loading, onSubmit }) {
   return (
     <div style={{
       display: "flex",
@@ -25,6 +25,7 @@ export default function ControlPanel({ hour, setHour, onSubmit }) {
       />
       <button
         onClick={onSubmit}
+        disabled={loading}
         style={{
           background: "linear-gradient(135deg, #2b3cff, #00d4ff)",
           border: "none",
@@ -35,7 +36,7 @@ export default function ControlPanel({ hour, setHour, onSubmit }) {
           fontWeight: "bold"
         }}
       >
-        Predict
+        {loading ? "Loading model…" : "Predict"}
       </button>
     </div>
   );

@@ -14,12 +14,12 @@ function App() {
   const [resetView, setResetView] = useState(false);
   const [resetSearch, setResetSearch] = useState(false);
   const [navigateRoute, setNavigateRoute] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const isWeekend = () => {
     const day = new Date().getDay();
     return day === 0 || day === 6 ? 1 : 0;
   };
-
 
   // Load hospitals once on app start
   useEffect(() => {
@@ -40,20 +40,27 @@ function App() {
       return;
     }
 
-    const request = {
-      lat: location.lat,
-      lon: location.lng,
-      hour: parseInt(hour),
-      is_weekend: isWeekend(),
-    };
+    setLoading(true);
 
-    const res = await recommendHospital(request);
-    setResult(res);
-    setResetSearch(true);
+    try {
+      const request = {
+        lat: location.lat,
+        lon: location.lng,
+        hour: parseInt(hour),
+        is_weekend: isWeekend()
+      };
 
-    // reset any previous navigation intent
-    setNavigateRoute(null);
+      const res = await recommendHospital(request);
+      setResult(res);
+      setResetSearch(true);
+      setNavigateRoute(null);
+    } catch (err) {
+      alert("Backend is warming up. Please try again in a few seconds.");
+    } finally {
+      setLoading(false);
+    }
   };
+
 
   // Navigate Now handler
   const handleNavigate = () => {

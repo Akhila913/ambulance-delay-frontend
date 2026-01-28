@@ -10,6 +10,8 @@ export default function ResultPanel({ result, onNavigate }) {
         </p>
         <p className="sidebar-muted">
           Markers on the map represent nearby hospitals.
+          <br></br>
+          The first request may take a few seconds as the service initializes.
         </p>
       </div>
     );
