@@ -27,12 +27,12 @@ function App() {
   }, []);
 
   useEffect(() => {
-  // New emergency location invalidates old prediction
+    if (!location) return;
+
     setResult(null);
     setNavigateRoute(null);
     setResetView(true);
   }, [location]);
-
 
   const handleSubmit = async () => {
     if (!location) {
@@ -112,6 +112,7 @@ function App() {
             <ControlPanel
               hour={hour}
               setHour={setHour}
+              loading={loading}
               onSubmit={handleSubmit}
             />
           </div>
